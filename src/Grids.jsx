@@ -43,11 +43,14 @@ const generateNewTitle = grid => {
   return grid;
 }
 
+const deepCopy = grid => grid.map(row => row.map(v => v));
+
+// dirty way of comparing 2 arrays
+const isGridsEqual = (g1, g2) => JSON.stringify(g1) === JSON.stringify(g2);
+
 const moveTitles = (grid, moveFunc) => {
-  const deepCopy = grid => grid.map(row => row.map(v => v));
   const bk = moveFunc(deepCopy(grid));
-  // dirty way of comparing 2 arrays
-  return (JSON.stringify(grid) === JSON.stringify(bk))
+  return (isGridsEqual(grid, bk))
     ? grid
     : generateNewTitle(bk)
 }
@@ -57,10 +60,17 @@ const moveRight = grid => moveTitles(grid, pushRight);
 const moveUp = grid => moveTitles(grid, pushUp);
 const moveDown = grid => moveTitles(grid, pushDown);
 
+const isGameOver = grid =>
+  isGridsEqual(grid, moveLeft(deepCopy(grid))) &&
+  isGridsEqual(grid, moveRight(deepCopy(grid))) &&
+  isGridsEqual(grid, moveUp(deepCopy(grid))) &&
+  isGridsEqual(grid, moveDown(deepCopy(grid)))
+
 export {
   makeGrid,
   moveLeft,
   moveRight,
   moveUp,
-  moveDown
+  moveDown,
+  isGameOver
 }
