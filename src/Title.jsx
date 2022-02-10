@@ -12,15 +12,16 @@ const titleColor = {
   512: "bg-indigo-400",
   1024: "bg-violet-400",
   2048: "bg-purple-400",
-  4086: "bg-fuchsia-400",
+  4096: "bg-fuchsia-400",
   8172: "bg-rose-400"
 };
 
 const Title = props => {
   return (
     <div className={`m-2 w-24 h-24 text-4xl flex rounded-xl
-    justify-center items-center ${titleColor[props.content]}`}>
-      {props.content}
+    justify-center items-center drop-shadow-md
+    ${titleColor[props.content]}`}>
+      {props.content || ' '}
     </div>
   );
 };

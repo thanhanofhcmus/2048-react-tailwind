@@ -26,8 +26,8 @@ const mergeRow = row => {
   return row.concat(new Array(len - row.length).fill(0));
 }
 
-const pushLeft = grid => grid.map(row => mergeRow(row));
-const pushRight = grid => grid.map(row => mergeRow(row.reverse()).reverse())
+const pushLeft = grid => deepCopy(grid).map(row => mergeRow(row));
+const pushRight = grid => deepCopy(grid).map(row => mergeRow(row.reverse()).reverse())
 const pushUp = grid => rotateCW(pushLeft(rotateCCW(grid)));
 const pushDown = grid => rotateCCW(pushLeft(rotateCW(grid)));
 
@@ -50,27 +50,22 @@ const isGridsEqual = (g1, g2) => JSON.stringify(g1) === JSON.stringify(g2);
 
 const moveTitles = (grid, moveFunc) => {
   const bk = moveFunc(deepCopy(grid));
-  return (isGridsEqual(grid, bk))
-    ? grid
-    : generateNewTitle(bk)
+  return (isGridsEqual(grid, bk)) ? grid : generateNewTitle(bk)
 }
 
-const moveLeft = grid => moveTitles(grid, pushLeft);
-const moveRight = grid => moveTitles(grid, pushRight);
-const moveUp = grid => moveTitles(grid, pushUp);
-const moveDown = grid => moveTitles(grid, pushDown);
-
 const isGameOver = grid =>
-  isGridsEqual(grid, moveLeft(deepCopy(grid))) &&
-  isGridsEqual(grid, moveRight(deepCopy(grid))) &&
-  isGridsEqual(grid, moveUp(deepCopy(grid))) &&
-  isGridsEqual(grid, moveDown(deepCopy(grid)))
+  isGridsEqual(grid, moveTitles(deepCopy(grid), pushLeft)) &&
+  isGridsEqual(grid, moveTitles(deepCopy(grid), pushRight)) &&
+  isGridsEqual(grid, moveTitles(deepCopy(grid), pushUp)) &&
+  isGridsEqual(grid, moveTitles(deepCopy(grid), pushDown))
 
 export {
   makeGrid,
-  moveLeft,
-  moveRight,
-  moveUp,
-  moveDown,
-  isGameOver
+  moveTitles,
+  pushLeft,
+  pushRight,
+  pushUp,
+  pushDown,
+  isGameOver,
+  isGridsEqual
 }
