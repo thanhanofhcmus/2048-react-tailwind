@@ -18,7 +18,7 @@ const titleColor = {
 
 const Title = props => {
   return (
-    <div className={`m-2 w-24 h-24 text-4xl flex rounded-xl
+    <div className={`m-2 w-24 h-24 text-3xl text-gray-200 flex rounded-xl
     justify-center items-center drop-shadow-md
     ${titleColor[props.content]}`}>
       {props.content || ' '}

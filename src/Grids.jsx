@@ -53,6 +53,8 @@ const moveTitles = (grid, moveFunc) => {
   return (isGridsEqual(grid, bk)) ? grid : generateNewTitle(bk)
 }
 
+const isWon = grid => grid.some(row => row.some(val => val >= 2048));
+
 const isGameOver = grid =>
   isGridsEqual(grid, moveTitles(deepCopy(grid), pushLeft)) &&
   isGridsEqual(grid, moveTitles(deepCopy(grid), pushRight)) &&
@@ -66,6 +68,7 @@ export {
   pushRight,
   pushUp,
   pushDown,
+  isWon,
   isGameOver,
   isGridsEqual
 }
