@@ -9,10 +9,10 @@ import useKeypress from "react-use-keypress";
 const App = () => {
     // const [grid, setGrid] = useState(makeGrid(4));
     const [grid, setGrid] = useState([
-        [2, 4, 2, 4],
-        [4, 2, 4, 2],
-        [2, 4, 2, 4],
-        [4, 2, 4, 4]
+        [0, 0, 0, 0],
+        [4, 2, 2, 0],
+        [8, 16, 32, 64],
+        [1024, 512, 256, 128],
     ]);
     const [lastGrid, setLastGrid] = useState(grid);
     const [score, setScore] = useState(0);
@@ -84,6 +84,11 @@ const App = () => {
                 <p>Use <code>R</code> to reset.</p>
                 <p>Use <code>Z</code> to undo last move.</p>
             </div>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
         </div>
     );
 };
