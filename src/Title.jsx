@@ -13,7 +13,11 @@ const titleColor = {
 	1024: "bg-violet-400",
 	2048: "bg-purple-400",
 	4096: "bg-fuchsia-400",
-	8172: "bg-rose-400"
+	8192: "bg-rose-400",
+	16384: "bg-green-600",
+	32768: "bg-blue-600",
+	65536: "bg-red-600",
+	131072: "bg-violet-600"
 };
 
 const getSize = size => {

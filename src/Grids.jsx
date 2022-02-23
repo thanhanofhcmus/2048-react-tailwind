@@ -61,6 +61,8 @@ const isGameOver = grid =>
 	isGridsEqual(grid, moveTitles(deepCopy(grid), pushUp)) &&
 	isGridsEqual(grid, moveTitles(deepCopy(grid), pushDown))
 
+const isFull = grid => grid.every(r => r.every(v => v !== 0));
+
 export {
 	makeGrid,
 	moveTitles,
@@ -68,7 +70,9 @@ export {
 	pushRight,
 	pushUp,
 	pushDown,
+	isFull,
 	isWon,
 	isGameOver,
-	isGridsEqual
+	isGridsEqual,
+	generateNewTitle,
 }
