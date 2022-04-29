@@ -35,8 +35,7 @@ const getSize = size => {
 const Title = props => {
 	return (
 		<div className={`${getSize(props.size)} text-gray-200 flex rounded-xl
-		justify-center items-center drop-shadow-md
-		transition duration-100 hover:scale-105
+		justify-center items-center drop-shadow-md transition duration-100 hover:scale-105
 		${titleColor[props.content]}`}>
 			{props.content || ' '}
 		</div>

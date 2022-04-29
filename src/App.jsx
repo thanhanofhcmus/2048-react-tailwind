@@ -22,8 +22,9 @@ const App = () => {
 			setLastGrid(grid);
 			let newGrid = moveTitles(grid, moveFunc);
 			const maxTitle = grid.reduce((a, r) => Math.max(a, r.reduce((c, d) => Math.max(c, d), 0)), 0);
+			// generate one more title for each threshold maxTitle passed
 			const levels = [2048, 8192, 32786, 65536, 131072];
-			levels.forEach(lv => { maxTitle >=  lv && !isFull(newGrid) && (newGrid = generateNewTitle(newGrid)); });
+			levels.forEach(lv => { maxTitle >= lv && !isFull(newGrid) && (newGrid = generateNewTitle(newGrid)); });
 			setGrid(newGrid);
 			setLost(isGameOver(newGrid));
 			setWon(isWon(newGrid));
@@ -62,9 +63,7 @@ const App = () => {
 
 	return (
 		<div>
-			<div className="text-3xl mb-3 px-3 py-2
-			font-bold text-red-500 bg-gray-200
-			w-fit mx-auto rounded-md drop-shadow-sm">
+			<div className="text-3xl mb-3 px-3 py-2 font-bold text-red-500 bg-gray-200 w-fit mx-auto rounded-md drop-shadow-sm">
 				Score: {score}
 			</div>
 			<div className="flex justify-center space-x-4">
@@ -72,8 +71,7 @@ const App = () => {
 				<div className={buttonStyle}> {size} </div>
 				<button className={`${buttonStyle} hover:scale-110`} onClick={() => setSize(size + 1)}>+</button>
 			</div>
-			<div className="bg-gray-200 p-2 grid-cols-10
-			w-fit mx-auto shadow rounded-xl"
+			<div className="bg-gray-200 p-2 grid-cols-10 w-fit mx-auto shadow rounded-xl"
 				style={{
 					display: "grid",
 					gridTemplateRows: `repeat(${size}, minmax(0, 1fr))`,
@@ -83,16 +81,14 @@ const App = () => {
 			</div>
 
 			<br />
-			<div className="text-xl m-3 p-3 bg-gray-200 rounded-xl
-			drop-shadow-sm w-fit mx-auto">
+			<div className="text-xl m-3 p-3 bg-gray-200 rounded-xl drop-shadow-sm w-fit mx-auto">
 				<p>Use <code>WASD</code> or <code>&uarr;&larr;&darr;&rarr;</code> or <code>hjkl</code> to move titles.</p>
 				<p>Use <code>R</code> to reset.</p>
 				<p>Use <code>Z</code> to undo last move.</p>
 			</div>
 			{
 				won &&
-				<div className="text-xl m-3 p-3 bg-green-400 text-gray-100
-								rounded-xl drop-shadow-sm w-fit mx-auto">
+				<div className="text-xl m-3 p-3 bg-green-400 text-gray-100 rounded-xl drop-shadow-sm w-fit mx-auto">
 					<p>You reached 2048, you won!</p>
 					<p>You can continue playing to reach even higher number</p>
 					<p>The difficulty increased, more 2s will be spawned each turn</p>
@@ -100,8 +96,7 @@ const App = () => {
 			}
 			{
 				lost &&
-				<div className="text-xl m-3 p-3 bg-red-400 text-gray-100
-								rounded-xl drop-shadow-sm w-fit mx-auto">
+				<div className="text-xl m-3 p-3 bg-red-400 text-gray-100 rounded-xl drop-shadow-sm w-fit mx-auto">
 					<p>Cannot make any more move, game over!</p>
 					<p>Press <code>R</code> to restart or press <code>Z</code> to undo last move</p>
 				</div>

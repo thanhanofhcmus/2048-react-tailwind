@@ -13,7 +13,7 @@ const rotateCW = grid => transpose(grid).map(r => r.reverse());
 const rotateCCW = grid => transpose(grid).reverse();
 
 const mergeRow = row => {
-	const len = row.length;
+	const originalLength = row.length;
 	row = row.filter(v => v !== 0);
 	let i = 0;
 	while (i < row.length) {
@@ -23,7 +23,7 @@ const mergeRow = row => {
 		}
 		i += 1;
 	}
-	return row.concat(new Array(len - row.length).fill(0));
+	return row.concat(new Array(originalLength - row.length).fill(0));
 }
 
 const pushLeft = grid => deepCopy(grid).map(row => mergeRow(row));
@@ -45,7 +45,7 @@ const generateNewTitle = grid => {
 
 const deepCopy = grid => grid.map(row => row.map(v => v));
 
-// dirty way of comparing 2 arrays
+// a dirty way of comparing 2 arrays
 const isGridsEqual = (g1, g2) => JSON.stringify(g1) === JSON.stringify(g2);
 
 const moveTitles = (grid, moveFunc) => {
